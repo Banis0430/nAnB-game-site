@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>幾 A 幾 B</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Number Guessing Game</p>
+        <h1>幾 A 幾 B</h1>
+        <p class="subtitle">猜出隱藏答案，A 代表位置與字元都正確，B 代表字元正確但位置錯誤。</p>
+      </div>
+      <button id="restartBtn" class="secondary-btn">重新開始</button>
+    </header>
+
+    <section id="setupPanel" class="card setup-panel">
+      <h2>遊戲設定</h2>
+
+      <div class="field">
+        <label>遊戲模式</label>
+        <div class="mode-grid">
+          <button class="mode-btn active" data-mode="10">10 進位<span>0–9</span></button>
+          <button class="mode-btn" data-mode="16">16 進位<span>0–9, A–F</span></button>
+          <button class="mode-btn" data-mode="36">36 進位<span>0–9, A–Z</span></button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="lengthInput">答案位數</label>
+        <input id="lengthInput" type="number" min="1" max="10" value="4">
+        <small id="lengthHint">10 進位最多 10 位</small>
+      </div>
+
+      <button id="startBtn" class="primary-btn">開始遊戲</button>
+      <p id="setupError" class="error" aria-live="polite"></p>
+    </section>
+
+    <section id="gamePanel" class="game-layout hidden">
+      <div class="card game-card">
+        <div class="game-top">
+          <div>
+            <span id="modeLabel" class="badge">10 進位</span>
+            <h2>你的猜測</h2>
+          </div>
+          <div class="attempts">
+            <span>猜測次數</span>
+            <strong id="attemptCount">0</strong>
+          </div>
+        </div>
+
+        <div class="hint-box">
+          <strong>可用字元：</strong><span id="availableChars"></span>
+          <br>
+          <strong>目前提示：</strong><span id="availableHint">尚未猜測</span>
+        </div>
+
+        <form id="guessForm">
+          <label for="guessInput" class="sr-only">輸入猜測</label>
+          <input id="guessInput" class="guess-input" autocomplete="off" spellcheck="false"
+                 placeholder="輸入答案，例如 1234" maxlength="10">
+          <button type="submit" class="primary-btn">猜！</button>
+        </form>
+        <p id="guessError" class="error" aria-live="polite"></p>
+
+        <div id="resultBox" class="result-box hidden" aria-live="polite"></div>
+      </div>
+
+      <aside class="card history-card">
+        <div class="history-header">
+          <h2>猜測紀錄</h2>
+          <button id="clearHistoryBtn" class="text-btn">清除</button>
+        </div>
+        <div id="historyList" class="history-list">
+          <div class="empty">還沒有猜測紀錄</div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
