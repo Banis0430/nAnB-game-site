@@ -85,6 +85,10 @@ function selectMode(mode) {
   $("setupError").textContent = "";
 }
 
+function scrollDown(el) {
+  el.scrollTop = el.scrollHeight;
+}
+
 function renderHistory() {
   const list = $("historyList");
 
@@ -102,6 +106,8 @@ function renderHistory() {
       <span>#${item.number}</span>
     </div>
   `).join("");
+
+  scrollDown(list);
 }
 
 function startGame() {
