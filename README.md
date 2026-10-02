@@ -2,7 +2,7 @@
 
 一個使用 HTML、CSS 與 JavaScript 製作的「幾 A 幾 B」網頁版猜數字遊戲，可直接部署到 GitHub Pages。
 
-A bilingual **Bulls and Cows / 幾 A 幾 B** guessing game built with HTML, CSS, and JavaScript. It can be deployed directly to GitHub Pages.
+A bilingual **Bulls and Cows** guessing game built with HTML, CSS, and JavaScript. It can be deployed directly to GitHub Pages.
 
 ## 功能 Features
 
