@@ -9,12 +9,12 @@
 <h1 data-i18n="title">幾 A 幾 B</h1>
 <p class="subtitle" data-i18n="subtitle">猜出隱藏答案。A 代表字元與位置都正確；B 代表字元正確但位置錯誤。</p></div>
 <div class="actions"><button id="lang" class="secondary">English</button><button id="restart" class="secondary" data-i18n="restart">重新開始</button></div></header>
-<section class="card"><h2 data-i18n="settings">遊戲設定</h2><div class="settings">
+<section id="settingsSection" class="card view"><h2 data-i18n="settings">遊戲設定</h2><div class="settings">
 <label><span data-i18n="mode">遊戲模式</span><select id="mode"><option value="10">10 進位</option><option value="16">16 進位</option><option value="36">36 進位</option></select></label>
 <label><span data-i18n="length">答案位數</span><input id="length" type="number" min="1" value="4"><small id="lengthHint"></small></label>
 <button id="start" class="primary" data-i18n="start">開始遊戲</button></div></section>
-<div class="grid"><section class="card"><div class="status"><div><small data-i18n="attempts">猜測次數</small><strong id="attempts">0</strong></div><div><small data-i18n="chars">可用字元：</small><strong id="chars"></strong></div></div>
+<section id="gameSection" class="view hidden"><div class="grid"><section class="card"><div class="sectionHead"><h2 data-i18n="guessSection">猜測</h2><button id="changeSettings" class="text" data-i18n="changeSettings">修改設定</button></div><div class="status"><div><small data-i18n="attempts">猜測次數</small><strong id="attempts">0</strong></div><div><small data-i18n="chars">可用字元：</small><strong id="chars"></strong></div></div>
 <div class="hint"><span data-i18n="hint">目前提示：</span><strong id="hint">尚未猜測</strong></div>
 <form id="form"><label for="guess" data-i18n="guessLabel">輸入猜測</label><div class="row"><input id="guess" autocomplete="off" spellcheck="false" placeholder="輸入答案，例如 1234" data-ph="guessPlaceholder"><button class="primary" data-i18n="guess">猜！</button></div><p id="message"></p></form></section>
-<section class="card"><div class="historyHead"><h2 data-i18n="history">猜測紀錄</h2><button id="clear" class="text" data-i18n="clear">清除</button></div><div id="history"></div></section></div>
+<section class="card historyCard"><div class="historyHead"><h2 data-i18n="history">猜測紀錄</h2><button id="clear" class="text" data-i18n="clear">清除</button></div><div id="history"></div></section></div>
 </main><script src="game.js"></script></body></html>

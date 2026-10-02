@@ -123,3 +123,18 @@ This is a client-side game. The answer is generated in the browser, so it does n
 
 可自由修改，用於個人學習與專案用途。  
 Free to modify for personal learning and project use.
+
+
+## Interface Layout
+
+### 中文
+- 開啟遊戲時只顯示「遊戲設定」。
+- 按下「開始遊戲」後，設定區會隱藏，只顯示猜測區與 Guess History。
+- Guess History 有獨立的垂直捲動區域，不會讓其他內容跟著一起滾動。
+- 遊戲中可按「修改設定」回到設定畫面；右上角「重新開始」也會回到設定畫面。
+
+### English
+- Only **Game Settings** is shown before the game starts.
+- After **Start Game**, the settings section is hidden and the guessing section is shown.
+- **Guess History** has its own vertical scroll area, so the rest of the layout does not scroll with it.
+- **Change Settings** returns to the settings screen, and **Restart** also returns to the settings screen.
