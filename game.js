@@ -6,8 +6,36 @@ function language(){document.documentElement.lang=lang==="zh"?"zh-Hant":"en";doc
 function hintLength(){let m=+$("mode").value;$("length").max=m;$("lengthHint").textContent=`${t("max")} ${m} ${t("unit")}`}
 function randomAnswer(){let a=C[mode].split("");for(let i=a.length-1;i;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a.slice(0,len).join("")}
 function showSettings(){$("settingsSection").classList.remove("hidden");$("gameSection").classList.add("hidden")}
-function start(){mode=+$('"'"'mode'"'"').value;len=+$('"'"'length'"'"').value;if(!Number.isInteger(len)||len<1||len>mode){$('"'"'message'"'"').textContent=t('"'"'range'"'"',{max:mode});return}answer=randomAnswer();tries=0;hist=[];$('"'"'attempts'"'"').textContent=0;$('"'"'chars'"'"').textContent=C[mode];$('"'"'message'"'"').textContent="";$('"'"'guess'"'"').disabled=false;$('"'"'guess'"'"').maxLength=len;$('"'"'hint'"'"').textContent=t('"'"'notGuessed'"'"');$('"'"'settingsSection'"'"').classList.add('"'"'hidden'"'"');$('"'"'gameSection'"'"').classList.remove('"'"'hidden'"'"');render();$('"'"'guess'"'"').focus()}
+function start(){
+  mode=+$('mode').value;
+  len=+$('length').value;
+  if(!Number.isInteger(len)||len<1||len>mode){
+    $('message').textContent=t('range',{max:mode});
+    return;
+  }
+  answer=randomAnswer();
+  tries=0;
+  hist=[];
+  $('attempts').textContent=0;
+  $('chars').textContent=C[mode];
+  $('message').textContent='';
+  $('guess').disabled=false;
+  $('guess').maxLength=len;
+  $('hint').textContent=t('notGuessed');
+  $('settingsSection').classList.add('hidden');
+  $('gameSection').classList.remove('hidden');
+  render();
+  $('guess').focus();
+}
 function score(g){let a=0,b=0;for(let i=0;i<len;i++)g[i]===answer[i]?a++:answer.includes(g[i])&&b++;return{a,b}}
 function submit(e){e.preventDefault();let g=$("guess").value.trim().toUpperCase(),set=new Set(C[mode]);$("guess").value=g;if(g.length!==len){$("message").textContent=t("exact",{length:len});return}if([...g].some(x=>!set.has(x))){$("message").textContent=t("invalid",{chars:C[mode]});return}if(new Set(g).size!==g.length){$("message").textContent=t("duplicate");return}let r=score(g);tries++;hist.unshift({guess:g,...r});$("attempts").textContent=tries;$("hint").textContent=r.a===len?t("correct",{answer,count:tries}):t("score",r);render();if(r.a===len)$("guess").disabled=true}
 function render(){let h=$("history");if(!hist.length){h.innerHTML=`<p class="empty">${t("empty")}</p>`;return}h.innerHTML=hist.map((x,i)=>`<div class="item"><span>#${hist.length-i}</span><code>${x.guess}</code><strong>${t("score",x)}</strong></div>`).join("")}
-$("mode").onchange=hintLength;$("start").onclick=start;$("restart").onclick=start;$("clear").onclick=()=>{hist=[];tries=0;$("attempts").textContent=0;$("hint").textContent=t("notGuessed");$("message").textContent="";$("guess").disabled=false;render()};$("form").onsubmit=submit;$("lang").onclick=()=>{lang=lang==="zh"?"en":"zh";localStorage.setItem("nAnB-language",lang);language()};language();showSettings();
+$("mode").onchange=hintLength;
+$("start").onclick=start;
+$("restart").onclick=showSettings;
+$("changeSettings").onclick=showSettings;
+$("clear").onclick=()=>{hist=[];tries=0;$("attempts").textContent=0;$("hint").textContent=t("notGuessed");$("message").textContent="";$("guess").disabled=false;render()};
+$("form").onsubmit=submit;
+$("lang").onclick=()=>{lang=lang==="zh"?"en":"zh";localStorage.setItem("nAnB-language",lang);language()};
+language();
+showSettings();
